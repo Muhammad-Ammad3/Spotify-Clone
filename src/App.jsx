@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { BrowserRouter, useLocation } from "react-router-dom";
 import Display from "./components/Display";
 import Player from "./components/Player";
-import SideBar from "./components/SideBar";
+import SideBar from "./components/Sidebar";
 
 const AppContent = () => {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
