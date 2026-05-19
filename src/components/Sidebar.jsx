@@ -1,56 +1,3 @@
-// import { useNavigate } from "react-router-dom";
-// import { assets } from "../assets/assets";
-
-// const SideBar = () => {
-//   const navigate = useNavigate();
-
-//   return (
-//     <div className="w-[25%] h-full p-2 flex-col gap-2 text-white hidden lg:flex">
-//       <div className="bg-[#121212] h-[15%] rounded flex flex-col justify-around">
-//         <div
-//           onClick={() => navigate("/")}
-//           className="flex items-center gap-3 pl-8 cursor-pointer"
-//         >
-//           <img className="w-6" src={assets.home_icon} alt="" />
-//           <p className="font-bold">Home</p>
-//         </div>
-//         <div className="flex items-center gap-3 pl-8 cursor-pointer">
-//           <img className="w-6" src={assets.search_icon} alt="" />
-//           <p className="font-bold">Search</p>
-//         </div>
-//       </div>
-//       <div className="bg-[#121212] h-[85%] rounded">
-//         <div className="p-4 flex items-center justify-between">
-//           <div className="flex items-center gap-3">
-//             <img className="w-8" src={assets.stack_icon} alt="" />
-//             <p className="font-semibold">Your Library</p>
-//           </div>
-//           <div className="flex items-center gap-3">
-//             <img className="w-5" src={assets.arrow_icon} alt="" />
-//             <img className="w-5" src={assets.plus_icon} alt="" />
-//           </div>
-//         </div>
-//         <div className="p-4 bg-[#242424] m-2 rounded font-semibold flex flex-col items-start justify-start gap-1 pl-4">
-//           <h1>Create your first playlist</h1>
-//           <p className="font-light">It's easy, we'll help you</p>
-//           <button className="px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4">
-//             Create Playlist
-//           </button>
-//         </div>
-//         <div className="p-4 bg-[#242424] m-2 rounded font-semibold flex flex-col items-start justify-start gap-1 pl-4 mt-4">
-//           <h1>Let's find some podcasts to follow</h1>
-//           <p className="font-light">We'll keep you updated on new episodes</p>
-//           <button className="px-4 py-1.5 bg-white text-[15px] text-black rounded-full mt-4">
-//             Browse Podcasts
-//           </button>
-//         </div>
-//       </div>
-//     </div>
-//   );
-// };
-
-// export default SideBar;
-
 import { useNavigate } from "react-router-dom";
 import { assets } from "../assets/assets";
 import { useState } from "react";
@@ -61,7 +8,12 @@ const SideBar = ({ isOpen, setIsOpen }) => {
 
   const menuItems = [
     { id: "home", icon: assets.home_icon, label: "Home", path: "/" },
-    { id: "search", icon: assets.search_icon, label: "Search", path: "/search" },
+    {
+      id: "search",
+      icon: assets.search_icon,
+      label: "Search",
+      path: "/search",
+    },
   ];
 
   const handleMenuClick = (item) => {
@@ -71,7 +23,6 @@ const SideBar = ({ isOpen, setIsOpen }) => {
 
   return (
     <>
-      {/* Mobile Overlay */}
       {isOpen && (
         <div
           className="fixed inset-0 bg-black/60 z-40 lg:hidden backdrop-blur-sm"
@@ -79,25 +30,22 @@ const SideBar = ({ isOpen, setIsOpen }) => {
         />
       )}
 
-      {/* Sidebar */}
       <div
         className={`
           fixed lg:relative top-0 bottom-0 z-50 transition-all duration-300 ease-in-out
           ${isOpen ? "left-0" : "-left-full lg:left-0"}
           lg:translate-x-0 h-full p-3 flex flex-col gap-3
-          bg-[#000000] lg:bg-gradient-to-b lg:from-[#1a1a2e] lg:via-[#16213e] lg:to-[#0f0f23]
-          w-[280px] flex-shrink-0
+          bg-[#000000] lg:bg-linear-to-b lg:from-[#1a1a2e] lg:via-[#16213e] lg:to-[#0f0f23]
+          w-70 shrink-0
         `}
       >
-        {/* Logo */}
         <div className="flex items-center gap-3 px-3 py-4">
-          <div className="w-10 h-10 bg-gradient-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center flex-shrink-0">
+          <div className="w-10 h-10 bg-linear-to-br from-green-400 to-green-600 rounded-full flex items-center justify-center shrink-0">
             <span className="text-2xl font-bold text-black">S</span>
           </div>
           <span className="text-2xl font-bold text-white tracking-tight">
             Spotify
           </span>
-          {/* Close button for mobile */}
           <button
             onClick={() => setIsOpen(false)}
             className="lg:hidden ml-auto text-white hover:text-green-400 transition"
@@ -106,8 +54,7 @@ const SideBar = ({ isOpen, setIsOpen }) => {
           </button>
         </div>
 
-        {/* Main Menu - FIXED: Changed rigid h-[15%] to responsive padding block */}
-        <div className="bg-[#121212]/80 backdrop-blur-lg rounded-2xl flex flex-col justify-center px-2 py-2 flex-shrink-0">
+        <div className="bg-[#121212]/80 backdrop-blur-lg rounded-2xl flex flex-col justify-center px-2 py-2 shrink-0">
           {menuItems.map((item) => (
             <div
               key={item.id}
@@ -134,10 +81,8 @@ const SideBar = ({ isOpen, setIsOpen }) => {
           ))}
         </div>
 
-        {/* Library Section */}
         <div className="bg-[#121212]/80 backdrop-blur-lg flex-1 rounded-2xl flex flex-col overflow-hidden">
-          {/* Header */}
-          <div className="p-4 flex items-center justify-between flex-shrink-0">
+          <div className="p-4 flex items-center justify-between shrink-0">
             <div className="flex items-center gap-3 group cursor-pointer">
               <img
                 className="w-6 transform transition-transform duration-200 group-hover:scale-110"
@@ -156,10 +101,8 @@ const SideBar = ({ isOpen, setIsOpen }) => {
             </div>
           </div>
 
-          {/* Scrollable Container for Library Content */}
           <div className="flex-1 overflow-y-auto px-2 pb-3 space-y-3 custom-scrollbar">
-            {/* Create Playlist Card */}
-            <div className="p-4 bg-gradient-to-br from-purple-600/30 to-blue-600/30 rounded-xl border border-white/5">
+            <div className="p-4 bg-linear-to-br from-purple-600/30 to-blue-600/30 rounded-xl border border-white/5">
               <h2 className="text-white font-semibold text-base mb-1">
                 Create your first playlist
               </h2>
@@ -171,8 +114,7 @@ const SideBar = ({ isOpen, setIsOpen }) => {
               </button>
             </div>
 
-            {/* Browse Podcasts Card */}
-            <div className="p-4 bg-gradient-to-br from-orange-500/20 to-pink-500/20 rounded-xl border border-white/5">
+            <div className="p-4 bg-linear-to-br from-orange-500/20 to-pink-500/20 rounded-xl border border-white/5">
               <h2 className="text-white font-semibold text-base mb-1">
                 Let's find some podcasts
               </h2>
@@ -184,7 +126,6 @@ const SideBar = ({ isOpen, setIsOpen }) => {
               </button>
             </div>
 
-            {/* Playlist Items */}
             <div className="space-y-1">
               <p className="text-white/40 text-xs font-medium uppercase tracking-wider px-2 py-2">
                 Recent Playlists
@@ -200,7 +141,7 @@ const SideBar = ({ isOpen, setIsOpen }) => {
                   key={index}
                   className="flex items-center gap-3 px-3 py-2 rounded-lg cursor-pointer hover:bg-white/5 transition group"
                 >
-                  <div className="w-10 h-10 bg-gradient-to-br from-gray-700 to-gray-600 rounded flex items-center justify-center flex-shrink-0">
+                  <div className="w-10 h-10 bg-linear-to-br from-gray-700 to-gray-600 rounded flex items-center justify-center shrink-0">
                     <span className="text-lg">🎵</span>
                   </div>
                   <div className="flex-1 min-w-0">
@@ -215,12 +156,19 @@ const SideBar = ({ isOpen, setIsOpen }) => {
           </div>
         </div>
 
-        {/* Footer Links */}
-        <div className="p-3 flex flex-wrap gap-3 text-xs text-white/50 flex-shrink-0">
-          <a href="#" className="hover:text-white transition">Legal</a>
-          <a href="#" className="hover:text-white transition">Privacy Center</a>
-          <a href="#" className="hover:text-white transition">Privacy Policy</a>
-          <a href="#" className="hover:text-white transition">Cookies</a>
+        <div className="p-3 flex flex-wrap gap-3 text-xs text-white/50 shrink-0">
+          <a href="#" className="hover:text-white transition">
+            Legal
+          </a>
+          <a href="#" className="hover:text-white transition">
+            Privacy Center
+          </a>
+          <a href="#" className="hover:text-white transition">
+            Privacy Policy
+          </a>
+          <a href="#" className="hover:text-white transition">
+            Cookies
+          </a>
         </div>
       </div>
     </>
